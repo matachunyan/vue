@@ -1,0 +1,74 @@
+<html>
+<head>
+    <meta charset=utf-8>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        #app{
+            padding-top: 100px;
+            width: 600px;
+            margin: 0 auto;
+        }
+        [v-cloak]{
+            display: none;
+        }
+        .list-item{
+            height: 40px;
+            line-height: 40px;
+        }
+        .btn.pull-right{
+            margin-top: 10px;
+        }
+        .content{
+            width: 170px;
+            font-size: 20px;
+            font-family: 楷体;
+            text-align: center;
+        }
+        .list-item>span{
+            display: inline-block;
+            vertical-align: bottom;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .cBox{
+            width: 25px;
+            height: 25px;
+
+
+        }
+        .done{
+            width: 175px;
+            font-size: 20px;
+            font-family: 楷体;
+            text-align: center;
+        }
+        .title{
+            font-size: 50px;
+            font-family: 黑体;
+            text-align: center;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+<div class="title">TO DO LIST 动起来： ）</div>
+<div id="app">
+    <div class="newTask">
+        <input type="text" v-model="newTodo" @keypress.enter="addTodo" class="form-control" placeholder="请输入你想做的事">
+    </div>
+    <ol class="todos">
+        <li v-for="todo in todoList" class="list-item">
+            <input type="checkbox" v-model="todo.done" class="cBox" style="margin-top: 20px">
+            <span class="content">{{ todo.title }}</span>
+
+            <span v-if="todo.done" class="done">已完成</span>
+            <span v-else class="done">未完成</span>
+
+            <button @click="removeTodo(todo)" class="btn">X</button>  <!-- 👈 加了一个按钮 -->
+        </li>
+    </ol>
+</div>
+<script src="bundle.js"></script>
+</body>
+</html>
